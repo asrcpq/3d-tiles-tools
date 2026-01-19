@@ -81,6 +81,12 @@ export class TypeDetection {
     let commonType: string | undefined = undefined;
     for (let i = 0; i < array.length; i++) {
       const element = array[i];
+
+      // Skip null/undefined elements - they represent missing data
+      if (element === null || element === undefined) {
+        continue;
+      }
+
       const elementType = TypeDetection.computeType(element);
       if (commonType === undefined) {
         commonType = elementType;
