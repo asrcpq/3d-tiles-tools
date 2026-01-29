@@ -15,6 +15,7 @@ export class Ids {
    * @returns The sanitized identifier
    */
   static sanitize(identifier: string) {
+    return identifier; // skip for now
     let result = "";
     for (let i = 0; i < identifier.length; i++) {
       const c = identifier.charAt(i);

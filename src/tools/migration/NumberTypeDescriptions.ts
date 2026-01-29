@@ -81,7 +81,7 @@ export class NumberTypeDescriptions {
   private static computeSingle(value: number | bigint): NumberTypeDescription {
     let isSigned = false;
     let isIntegral = false;
-    let requiredBits = 32;
+    let requiredBits = 64;
 
     if (value < 0) {
       isSigned = true;
@@ -139,6 +139,11 @@ export class NumberTypeDescriptions {
       requiredBits: 8,
     };
     for (const value of values) {
+      // Skip null/undefined values - they represent missing data
+      if (value === null || value === undefined) {
+        continue;
+      }
+
       if (Array.isArray(value)) {
         const element = NumberTypeDescriptions.computeMinimal(value);
         result = NumberTypeDescriptions.min(result, element);

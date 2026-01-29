@@ -278,7 +278,16 @@ export class TileTableDataToStructuralMetadata {
         const array = TileTableDataToStructuralMetadata.processAny(values);
         b.addProperty(propertyName, array);
       } else {
-        b.addProperty(propertyName, [...values]);
+        // Replace null/undefined with noData sentinel if specified
+        const array = [...values];
+        if (property.noData !== undefined) {
+          for (let i = 0; i < array.length; i++) {
+            if (array[i] === null || array[i] === undefined) {
+              array[i] = property.noData;
+            }
+          }
+        }
+        b.addProperty(propertyName, array);
       }
     }
 
