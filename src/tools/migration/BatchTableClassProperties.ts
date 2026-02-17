@@ -104,8 +104,6 @@ export class BatchTableClassProperties {
       default: undefined,
       semantic: undefined,
     };
-    console.log(`Class property for ${batchTablePropertyName}:`, classProperty);
-
     return classProperty;
   }
 
